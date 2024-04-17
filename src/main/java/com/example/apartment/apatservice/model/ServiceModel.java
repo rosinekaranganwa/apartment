@@ -1,15 +1,30 @@
-package com.example.apartment.amenties.model;
+package com.example.apartment.apatservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-import java.rmi.server.UID;
+import java.util.UUID;
 
 @Entity
 @Table(name = "amenties")
 public class ServiceModel {
     @Id
-    private UID serviceId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID service_id;
     private String name;
+
+    public UUID getService_id() {
+        return service_id;
+    }
+
+    public void setService_id(UUID serviceId) {
+        this.service_id = serviceId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
