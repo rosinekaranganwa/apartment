@@ -1,8 +1,12 @@
 package com.example.apartment.review.model;
 import com.example.apartment.customer.model.CustomerModel;
 import jakarta.persistence.*;
-import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.UUID;
+@Getter
+@Setter
 @Entity
 @Table(name = "review")
 public class ReviewModel {
@@ -12,28 +16,4 @@ public class ReviewModel {
     @ManyToOne
     @JoinColumn(name = "customerId")
     private CustomerModel customer;
-
-    public UUID getReviewId() {
-        return reviewId;
-    }
-
-    public void setReviewId(UUID reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public CustomerModel getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerModel customer) {
-        this.customer = customer;
-    }
 }

@@ -3,74 +3,37 @@ package com.example.apartment.building.model;
 import com.example.apartment.address.model.AddressModel;
 import com.example.apartment.apartment.model.ApartmentModel;
 import com.example.apartment.apatservice.model.ServiceModel;
+import com.example.apartment.photo.model.PhotoModel;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "building")
 public class BuildingModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID building_id;
+    private UUID buildingId;
     private String numberOfFloor;
     private String numberOfRoom;
+    private String parkingAvailability;
+    private String utilities;
+    private String accessibilityFeatures;
     @OneToMany
-    @JoinColumn(name = "apartment_id")
+    @JoinColumn(name = "photoId")
+    private List<PhotoModel> photo;
+    @OneToMany
+    @JoinColumn(name = "apartmentId")
     private List<ApartmentModel> apartment;
     @OneToOne
-    @JoinColumn(name="address_id")
+    @JoinColumn(name="addressId")
     private AddressModel address;
     @OneToMany
-    @JoinColumn(name="service_id")
+    @JoinColumn(name="serviceId")
     private List<ServiceModel> service;
 
-    public UUID getBuilding_id() {
-        return building_id;
-    }
-
-    public void setBuilding_id(UUID building_id) {
-        this.building_id = building_id;
-    }
-
-    public String getNumberOfFloor() {
-        return numberOfFloor;
-    }
-
-    public void setNumberOfFloor(String numberOfFloor) {
-        this.numberOfFloor = numberOfFloor;
-    }
-
-    public String getNumberOfRoom() {
-        return numberOfRoom;
-    }
-
-    public void setNumberOfRoom(String numberOfRoom) {
-        this.numberOfRoom = numberOfRoom;
-    }
-
-    public List<ApartmentModel> getApartment() {
-        return apartment;
-    }
-
-    public void setApartment(List<ApartmentModel> apartment) {
-        this.apartment = apartment;
-    }
-
-    public AddressModel getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressModel address) {
-        this.address = address;
-    }
-
-    public List<ServiceModel> getService() {
-        return service;
-    }
-
-    public void setService(List<ServiceModel> service) {
-        this.service = service;
-    }
 }
