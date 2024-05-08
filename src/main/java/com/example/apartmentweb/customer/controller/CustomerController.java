@@ -2,6 +2,7 @@ package com.example.apartmentweb.customer.controller;
 
 import com.example.apartmentweb.customer.model.CustomerModel;
 import com.example.apartmentweb.customer.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,9 @@ public class CustomerController {
     }
 
     @PostMapping
-    public CustomerModel createCustomer(@RequestBody CustomerModel customer) {
-        return customerService.saveCustomer(customer);
+    public ResponseEntity<CustomerModel> createCustomer(@Valid @RequestBody CustomerModel customer) {
+        CustomerModel savedCustomer=customerService.saveCustomer(customer);
+        return  ResponseEntity.ok(savedCustomer);
     }
 
     @DeleteMapping("/{id}")
@@ -39,3 +41,4 @@ public class CustomerController {
         return ResponseEntity.ok().build();
     }
 }
+

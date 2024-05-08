@@ -1,5 +1,4 @@
 package com.example.apartmentweb.address.model;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
